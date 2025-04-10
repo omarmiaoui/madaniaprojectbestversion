@@ -177,6 +177,52 @@
       margin-bottom: 30px;
       border-right: 4px solid #1E90FF;
     }
+    
+    /* Editable Notes Box */
+    .notes-box {
+      margin-top: 30px;
+      padding: 15px;
+      border: 2px dashed #1E90FF;
+      border-radius: 8px;
+      background-color: #f8f8f8;
+    }
+    
+    .notes-box h4 {
+      color: #1E90FF;
+      margin-top: 0;
+      margin-bottom: 10px;
+    }
+    
+    .notes-content {
+      min-height: 100px;
+      padding: 10px;
+      background-color: white;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      cursor: text;
+    }
+    
+    .save-btn {
+      background-color: #1E90FF;
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+    
+    .save-btn:hover {
+      background-color: #187bcd;
+    }
+    
+    .saved-message {
+      color: green;
+      font-size: 14px;
+      margin-top: 5px;
+      display: none;
+    }
   </style>
 </head>
 <body>
@@ -235,6 +281,16 @@
           <li><strong>التأثير على السياسات:</strong> المساهمة في وضع قوانين وسياسات تدعم حماية المحيطات والحياة البحرية.</li>
           <li><strong>تشجيع البحث العلمي:</strong> دعم الدراسات التي ساعدت في فهم أفضل للتحديات البيئية والحلول الفعالة.</li>
         </ul>
+        
+        <!-- Editable Notes Box -->
+        <div class="notes-box">
+          <h4>ملاحظاتك:</h4>
+          <div class="notes-content" id="notesContent" contenteditable="true">
+            اكتب ملاحظاتك أو أفكارك هنا...
+          </div>
+          <button class="save-btn" id="saveBtn">حفظ الملاحظات</button>
+          <div class="saved-message" id="savedMessage">تم حفظ الملاحظات بنجاح!</div>
+        </div>
       </div>
     </div>
   </div>
@@ -245,6 +301,9 @@
     const closeBtn = document.getElementById('closeBtn');
     const newPage = document.getElementById('newPage');
     const newPageClose = document.getElementById('newPageClose');
+    const notesContent = document.getElementById('notesContent');
+    const saveBtn = document.getElementById('saveBtn');
+    const savedMessage = document.getElementById('savedMessage');
     
     // Show the image when logo is clicked
     logo.addEventListener('click', function() {
@@ -261,11 +320,39 @@
     // Show new page when image is clicked
     actionImage.addEventListener('click', function() {
       newPage.style.display = 'block';
+      // Load saved notes if any
+      const savedNotes = localStorage.getItem('marineAssociationNotes');
+      if (savedNotes) {
+        notesContent.innerHTML = savedNotes;
+      }
     });
     
     // Close new page when close button is clicked
     newPageClose.addEventListener('click', function() {
       newPage.style.display = 'none';
+    });
+    
+    // Clear placeholder text when user starts typing
+    notesContent.addEventListener('focus', function() {
+      if (this.textContent === 'اكتب ملاحظاتك أو أفكارك هنا...') {
+        this.textContent = '';
+      }
+    });
+    
+    // Restore placeholder if empty
+    notesContent.addEventListener('blur', function() {
+      if (this.textContent === '') {
+        this.textContent = 'اكتب ملاحظاتك أو أفكارك هنا...';
+      }
+    });
+    
+    // Save notes to local storage
+    saveBtn.addEventListener('click', function() {
+      localStorage.setItem('marineAssociationNotes', notesContent.innerHTML);
+      savedMessage.style.display = 'block';
+      setTimeout(function() {
+        savedMessage.style.display = 'none';
+      }, 2000);
     });
   </script>
   <meta name="description" content="جمعية تونسية لحماية الكائنات البحرية">
