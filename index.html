@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>جمعية حماية الكائنات البحرية</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      font-family: 'Arial', sans-serif;
+      overflow: hidden;
+      position: relative;
+    }
+    
+    /* Background Image */
+    .bg-image {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+      opacity: 0.7;
+    }
+    
+    .logo-container {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      cursor: pointer;
+      z-index: 10;
+    }
+    
+    .logo {
+      padding: 25px 35px;
+      background: rgba(10, 46, 56, 0.8);
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(30, 144, 255, 0.6);
+      transition: all 0.3s ease;
+      backdrop-filter: blur(5px);
+      border: 2px solid rgba(30, 144, 255, 0.3);
+    }
+    
+    .logo-text {
+      font-size: 22px;
+      font-weight: bold;
+      color: white;
+      text-shadow: 0 0 10px #1E90FF;
+      margin: 0;
+    }
+    
+    .logo:hover {
+      transform: translate(-50%, -50%) scale(1.05);
+      box-shadow: 0 0 30px rgba(30, 144, 255, 0.8);
+    }
+    
+    /* What We Do Image */
+    .action-image {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.8);
+      max-width: 90%;
+      max-height: 90%;
+      object-fit: contain;
+      z-index: 100;
+      display: none;
+      animation: fadeIn 0.5s ease;
+      border-radius: 10px;
+      box-shadow: 0 0 40px rgba(0, 0, 0, 0.8);
+      border: 3px solid #1E90FF;
+      cursor: pointer;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translate(-50%, -50%) scale(0.7); }
+      to { opacity: 1; transform: translate(-50%, -50%) scale(0.8); }
+    }
+    
+    .close-btn {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      color: white;
+      font-size: 30px;
+      z-index: 101;
+      cursor: pointer;
+      display: none;
+      text-shadow: 0 0 5px black;
+      background: rgba(0,0,0,0.5);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 40px;
+    }
+    
+    /* New Page Styles */
+    .new-page {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #1E90FF;
+      z-index: 200;
+      display: none;
+      padding: 50px;
+      box-sizing: border-box;
+      overflow-y: auto;
+    }
+    
+    .new-page-content {
+      max-width: 800px;
+      margin: 0 auto;
+      background-color: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.3);
+    }
+    
+    .new-page h2 {
+      color: #1E90FF;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    
+    .new-page p {
+      line-height: 1.6;
+      font-size: 18px;
+      color: #333;
+    }
+    
+    .new-page-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      color: white;
+      font-size: 30px;
+      cursor: pointer;
+      background: rgba(0,0,0,0.5);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 40px;
+    }
+    
+    .editable-paragraph {
+      min-height: 200px;
+      border: 1px dashed #1E90FF;
+      padding: 15px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Background Image -->
+  <img src="https://images.unsplash.com/photo-1439405326854-014607f694d7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" 
+       alt="Ocean Background" 
+       class="bg-image">
+  
+  <!-- Clickable Logo -->
+  <div class="logo-container" id="logo">
+    <div class="logo">
+      <p class="logo-text">جمعية التونسية لحماية الكائنات البحرية</p>
+    </div>
+  </div>
+  
+  <!-- What We Do Image (hidden by default) -->
+  <img src="aaaaa.png" 
+       alt="logo" 
+       class="action-image" 
+       id="actionImage">
+  
+  <div class="close-btn" id="closeBtn">✕</div>
+  
+  <!-- New Page -->
+  <div class="new-page" id="newPage">
+    <div class="new-page-close" id="newPageClose">✕</div>
+    <div class="new-page-content">
+      <h2>معلومات عن الجمعية</h2>
+      <p>هنا يمكنك كتابة معلومات عن الجمعية وأهدافها وأنشطتها: 
+
+أهداف: 
+
+حماية التنوع البيولوجي البحري: الحفاظ على الأنواع البحرية والمواطن الطبيعية لضمان توازن النظام البيئي. 
+
+مكافحة الصيد الجائر والصيد غير القانوني: تعزيز ممارسات الصيد المستدامة ومراقبة الأنشطة البحرية. 
+
+تقليل التلوث البحري: الحد من النفايات البلاستيكية والمواد الكيميائية الملوثة التي تؤثر على الحياة البحرية. 
+
+الترويج للمناطق البحرية المحمية (MPAs): توسيع نطاق هذه المناطق وإدارتها لضمان بيئة آمنة للكائنات البحرية. 
+
+دعم البحث العلمي: تعزيز فهم الأنظمة البيئية البحرية من خلال البحث العلمي والتكنولوجيا. 
+
+تعزيز مشاركة المجتمع والتوعية: إشراك الجمهور وزيادة الوعي بأهمية الحفاظ على المحيطات. 
+
+الإنجازات: 
+
+زيادة المناطق البحرية المحمية: إنشاء وإدارة مناطق محمية إضافية لضمان بيئة آمنة للأنواع البحرية. 
+
+تقليل التلوث: نجاحات في تنظيف الشواطئ والمحيطات وتقليل النفايات البلاستيكية. 
+
+إعادة تأهيل الأنواع: إنقاذ ورعاية الأنواع البحرية المهددة بالانقراض، وإعادة إدماجها في الطبيعة. 
+
+التوعية المجتمعية: تنظيم حملات توعية ناجحة وزيادة الفهم بأهمية الحفاظ على الأنواع البحرية. 
+
+التأثير على السياسات: المساهمة في وضع قوانين وسياسات تدعم حماية المحيطات والحياة البحرية. 
+
+تشجيع البحث العلمي: دعم الدراسات التي ساعدت في فهم أفضل للتحديات البيئية والحلول الفعالة. 
+
+التقديم: 
+
+مرحبًا بكم في [اسم الجمعية]، مبادرة مخصصة للحفاظ على الحياة البحرية والنظم البيئية في محيطاتنا. تأسست جمعيتنا بدافع الشغف بحماية المحيطات، ونعمل بلا كلل لمواجهة التحديات مثل الصيد الجائر، التلوث، تدمير المواطن الطبيعية، وتعريض الأنواع البحرية للخطر. 
+
+من خلال إشراك المجتمع، ودعم البحث العلمي، وتعزيز الممارسات المستدامة، نسعى للحفاظ على التنوع البيولوجي، وزيادة الوعي، وضمان مستقبل زاهر لمحيطاتنا. نحن نؤمن بقوة التعاون لإحداث تغيير حقيقي، وندعو كل من يشاركنا رؤيتنا للانضمام إلينا في هذه الرحلة المهمة 
+
+ </p>
+      <div class="editable-paragraph" id="editableParagraph" contenteditable="true">
+        اضغط هنا لكتابة فقرة عن الجمعية...
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const logo = document.getElementById('logo');
+    const actionImage = document.getElementById('actionImage');
+    const closeBtn = document.getElementById('closeBtn');
+    const newPage = document.getElementById('newPage');
+    const newPageClose = document.getElementById('newPageClose');
+    const editableParagraph = document.getElementById('editableParagraph');
+    
+    // Show the image when logo is clicked
+    logo.addEventListener('click', function() {
+      actionImage.style.display = 'block';
+      closeBtn.style.display = 'block';
+    });
+    
+    // Close the image when close button is clicked
+    closeBtn.addEventListener('click', function() {
+      actionImage.style.display = 'none';
+      closeBtn.style.display = 'none';
+    });
+    
+    // Show new page when image is clicked
+    actionImage.addEventListener('click', function() {
+      newPage.style.display = 'block';
+    });
+    
+    // Close new page when close button is clicked
+    newPageClose.addEventListener('click', function() {
+      newPage.style.display = 'none';
+    });
+    
+    // Clear placeholder text when user starts typing
+    editableParagraph.addEventListener('focus', function() {
+      if (this.textContent === 'اضغط هنا لكتابة فقرة عن الجمعية...') {
+        this.textContent = '';
+      }
+    });
+    
+    // Restore placeholder if empty
+    editableParagraph.addEventListener('blur', function() {
+      if (this.textContent === '') {
+        this.textContent = 'اضغط هنا لكتابة فقرة عن الجمعية...';
+      }
+    });
+  </script>
+  <meta name="description" content="جمعية تونسية لحماية الكائنات البحرية">
+  <meta property="og:image" content="URL_TO_YOUR_LOGO">
+</body>
+</html>
